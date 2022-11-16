@@ -1,20 +1,22 @@
 function Nosotros(props) {
     return (
-        <div>
-            <h3>Quienes Somos?, What is Lorem Ipsum?</h3>
+        <div className="App-nosotros" >
+            <div class="text-white text-decoration-none">
+            <h3>Quienes Somos?</h3>
             <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-                containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker including versions of
-                Lorem Ipsum.
+                
+
+                THE MOTORCYCLE TECH ES UN GRUPO EMPRESARIAL COLOMBIANO, QUE SE DEDICA A LA IMPORTACIÓN Y VENTA DE LOS MEJORES 
+                ACCESORIOS E INDUMENTARIA, PARA EL MUNDO DEL MOTOCICLISMO NUESTROS CENTROS DE DISTRIBUCIÓN ESTAN UBICADOS 
+                EN CIUDADES ESTRATÉGICAS DEL PAIS, ESTO NOS PERMITE LOGRAR UNA GRAN COBERTURA Y ATENDER A NUESTROS 
+                MÁS DE 1,500 DISTRIBUIDORES EN TODO EL TERRITORIO NACIONAL, CON RAPIDEZ Y EFICIENCIA, UNA CARACTERÍSTICA IMPORTANTE 
+                DE NUESTRA EMPRESA ES LA DE TRABAJAR DESDE SU CREACIÓN, CON LAS MEJORES MARCAS Y CALIDAD EN CADA LÍNEA;
+                CON MARCAS LÍDERES A NIVEL 
+                NACIONAL E INTERNACIONAL. 
+                
             </p>
-            <h4>Esperamos verte pronto...</h4>
+            <h4>Esperamos verte pronto... </h4>
+            </div>
         </div>
     );
 }

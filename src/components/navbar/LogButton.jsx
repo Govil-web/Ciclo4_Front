@@ -7,7 +7,7 @@ function LogButton(props) {
     } else {
         logButton = (
             <Link to={"/login"}>
-                <button className="btn btn-outline-success">Login</button>
+                <button className="btn btn-outline-primary">Login</button>
             </Link>
         );
     }
