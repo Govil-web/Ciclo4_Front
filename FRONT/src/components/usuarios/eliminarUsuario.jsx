@@ -1,9 +1,33 @@
-function CreateUsuario(props) {
+import { useParams } from "react-router-dom";
+import { getUsuario } from "../../js/getData";
+import { estadoPrincipal, setEstadoPrincipal } from "../../js/global";
+
+function EliminarUsuario(props) {
+    let { idUsuario } = useParams();
+    let usuario = getUsuario(idUsuario);
+    setEstadoPrincipal({
+        name: "N/A - " + estadoPrincipal.name,
+        auhtenticated: false,
+    });
     return (
         <div className="col-12 w-75 mx-auto">
-            <h3>Crear Usuario</h3>
+            <h3>Pagina: Eliminar Usuario{estadoPrincipal.name}</h3>
             <form>
                 <div class="row g-3">
+                    <div class="">
+                        <label for="identifier" class="form-label">
+                            Id
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="identifier"
+                            defaultValue={usuario.id}
+                            required={true}
+                            readOnly={true}
+                        />
+                    </div>
+
                     <div class="">
                         <label for="firstName" class="form-label">
                             Nombre Persona
@@ -13,9 +37,10 @@ function CreateUsuario(props) {
                             class="form-control"
                             id="firstName"
                             placeholder="Nombre de la persona"
-                            defaultValue=""
+                            defaultValue={usuario.firstName}
                             required={true}
                             minLength={4}
+                            readOnly={true}
                         />
                     </div>
 
@@ -30,9 +55,10 @@ function CreateUsuario(props) {
                                 class="form-control"
                                 id="username"
                                 placeholder="Username"
-                                defaultValue=""
+                                defaultValue={usuario.username}
                                 required={true}
                                 minLength={4}
+                                readOnly={true}
                             />
                         </div>
                     </div>
@@ -46,8 +72,9 @@ function CreateUsuario(props) {
                             class="form-control"
                             id="email"
                             placeholder="ejemplo@dominio.com"
-                            defaultValue=""
+                            defaultValue={usuario.email}
                             required={true}
+                            readOnly={true}
                         />
                     </div>
 
@@ -59,32 +86,20 @@ function CreateUsuario(props) {
                             type={"password"}
                             class="form-control"
                             id="password"
-                            defaultValue=""
+                            defaultValue={usuario.password}
                             required={true}
-                        />
-                    </div>
-
-                    <div class="col-12">
-                        <label for="password2" class="form-label">
-                            Repita la Contrasena:
-                        </label>
-                        <input
-                            type={"password"}
-                            class="form-control"
-                            id="password2"
-                            defaultValue=""
-                            required={true}
+                            readOnly={true}
                         />
                     </div>
 
                     <hr class="my-4" />
 
                     <button
-                        class="w-100 btn btn-primary btn-lg"
-                        type="submit"
+                        class="w-100 btn btn-outline-danger btn-lg"
+                        type="button"
                         onClick={onClickSubmit}
                     >
-                        Continue to checkout
+                        Eliminar
                     </button>
                 </div>
             </form>
@@ -93,7 +108,8 @@ function CreateUsuario(props) {
 }
 
 function onClickSubmit(e) {
+    e.preventDefault();
     console.log(e);
 }
 
-export default CreateUsuario;
+export default EliminarUsuario;

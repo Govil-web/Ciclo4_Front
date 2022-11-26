@@ -1,33 +1,15 @@
-import { useParams } from "react-router-dom";
-import { getUsuario } from "../../js/getData";
-import { estadoPrincipal, setEstadoPrincipal } from "../../js/global";
+//cargamos libreria para peticiones
+import { getRequest } from "../../js/getData";
+import backendConfig from "../../config";
+import { useNavigate } from "react-router-dom";
 
-function EliminarUsuario(props) {
-    let { idUsuario } = useParams();
-    let usuario = getUsuario(idUsuario);
-    setEstadoPrincipal({
-        name: "N/A - " + estadoPrincipal.name,
-        auhtenticated: false,
-    });
+function CreateUsuario(props) {
+    let navigate = useNavigate();
     return (
         <div className="col-12 w-75 mx-auto">
-            <h3>Pagina: Eliminar Usuario{estadoPrincipal.name}</h3>
+            <h3>Pagina: Crear Usuario</h3>
             <form>
                 <div class="row g-3">
-                    <div class="">
-                        <label for="identifier" class="form-label">
-                            Id
-                        </label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="identifier"
-                            defaultValue={usuario.id}
-                            required={true}
-                            readOnly={true}
-                        />
-                    </div>
-
                     <div class="">
                         <label for="firstName" class="form-label">
                             Nombre Persona
@@ -37,10 +19,9 @@ function EliminarUsuario(props) {
                             class="form-control"
                             id="firstName"
                             placeholder="Nombre de la persona"
-                            defaultValue={usuario.firstName}
+                            defaultValue=""
                             required={true}
                             minLength={4}
-                            readOnly={true}
                         />
                     </div>
 
@@ -55,10 +36,9 @@ function EliminarUsuario(props) {
                                 class="form-control"
                                 id="username"
                                 placeholder="Username"
-                                defaultValue={usuario.username}
+                                defaultValue=""
                                 required={true}
                                 minLength={4}
-                                readOnly={true}
                             />
                         </div>
                     </div>
@@ -72,9 +52,8 @@ function EliminarUsuario(props) {
                             class="form-control"
                             id="email"
                             placeholder="ejemplo@dominio.com"
-                            defaultValue={usuario.email}
+                            defaultValue=""
                             required={true}
-                            readOnly={true}
                         />
                     </div>
 
@@ -86,20 +65,34 @@ function EliminarUsuario(props) {
                             type={"password"}
                             class="form-control"
                             id="password"
-                            defaultValue={usuario.password}
+                            defaultValue=""
                             required={true}
-                            readOnly={true}
+                        />
+                    </div>
+
+                    <div class="col-12">
+                        <label for="password2" class="form-label">
+                            Repita la Contrasena:
+                        </label>
+                        <input
+                            type={"password"}
+                            class="form-control"
+                            id="password2"
+                            defaultValue=""
+                            required={true}
                         />
                     </div>
 
                     <hr class="my-4" />
 
                     <button
-                        class="w-100 btn btn-outline-danger btn-lg"
-                        type="submit"
-                        onClick={onClickSubmit}
+                        class="w-100 btn btn-primary btn-lg"
+                        type="button"
+                        onClick={() => {
+                            onClickSubmit(navigate);
+                        }}
                     >
-                        Eliminar
+                        Continue to checkout
                     </button>
                 </div>
             </form>
@@ -107,9 +100,36 @@ function EliminarUsuario(props) {
     );
 }
 
-function onClickSubmit(e) {
-    e.preventDefault();
-    console.log(e);
+function onClickSubmit(navigate) {
+    //capturamos los datos del formulario
+    let firstName = document.getElementById("firstName").value;
+    let username = document.getElementById("username").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    //contruimos la peticion
+    //construimos el body
+    let bodyData = {
+        firstName,
+        username,
+        email,
+        password,
+    };
+    let url = backendConfig.FULL_API_PATH + "usuarios/create";
+    let promesaCreate = getRequest(url, {}, "post", bodyData);
+    //enviamos la peticion
+    promesaCreate
+        .then(function (res) {
+            if (res.status < 300) {
+                //redireccionar
+                console.log("Usuario creado");
+                navigate("/usuarios");
+            }
+            console.log(res);
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
+    //segun el resultado, mostramos errores O cargamos la pagina de usuarios
 }
 
-export default EliminarUsuario;
+export default CreateUsuario;

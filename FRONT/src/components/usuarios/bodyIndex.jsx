@@ -1,27 +1,20 @@
 import Table from "../table/Table";
-import { getData } from "../../js/getData";
+import { useState } from "react";
+import { getRequest } from "../../js/getData";
 import MainPage from "../table/MainPage";
 import CreateButton from "../table/CreateBotton";
 import SearchBar from "../table/SearchBar";
 
-let objCss = {
-    border: "6px solid red",
-};
-
-function UsuariosIndex(props) {
-    let datosTabla = getData("url", {}, "get", {});
-    //procesar datos
+function BodyIndex(props) {
     return (
         <div>
             <h3>Usuarios</h3>
-            <p style={objCss}>
-                Bienvenidos a la pagina de administracion de usuarios
-            </p>
+            
             <MainPage
-                data={datosTabla}
+                data={props.datosTabla}
                 path={"/usuarios"}
                 name={"Tabla de Usuarios"}
-                columns={["id", "firstName", "email", "username", "password"]}
+                columns={["_id", "firstName", "email", "username", "password"]}
                 columnsAlias={[
                     "ID",
                     "Nombre",
@@ -43,4 +36,4 @@ function UsuariosIndex(props) {
     );
 }
 
-export default UsuariosIndex;
+export default BodyIndex;

@@ -19,6 +19,12 @@ function Navbar(props) {
                 </a>
 
                 <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+                <Link
+                        to={"/"}
+                        className="me-3 py-2 text-white text-decoration-none"
+                    >
+                        Inicio
+                    </Link>
                     <Link
                         to={"/productos"}
                         className="me-3 py-2 text-white text-decoration-none"
@@ -43,12 +49,7 @@ function Navbar(props) {
                     >
                         Nosotros
                     </Link>
-                    <Link
-                        to={"/ejemplos"}
-                        className="me-3 py-2 text-white text-decoration-none"
-                    >
-                        Ejemplos
-                    </Link>
+                    
                     <LogButton logged={props.logged} />
                 </nav>
             </div>
