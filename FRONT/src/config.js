@@ -6,7 +6,7 @@
 // let FULL_API_PATH = PROTOCOL + "://" + HOST + ":" + PORT + API_ROUTE;
 
 
-//https://ciclo4-back.vercel.app/api/usuarios/all
+//https://ciclo4-back.vercel.app/
 let PORT = 80;
 let HOST = "ciclo4-back.vercel.app";
 let PROTOCOL = "https";
@@ -18,7 +18,7 @@ if (PORT === 80) {
     FULL_PATH = PROTOCOL + "://" + HOST + "/";
     FULL_API_PATH = PROTOCOL + "://" + HOST + API_ROUTE;
 }
-// https://backendproyecto-nigth.vercel.app/api/usuarios/all
+
 
 module.exports = {
     PORT,
